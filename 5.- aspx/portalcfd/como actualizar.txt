@@ -1,0 +1,114 @@
+Agregar variables de 
+'Carta porte
+    'Carta porte 
+    Shared pcache As New DataTable
+    Public Shared idCache As Integer = 0
+    Shared _RfcRemitente As String = ""
+    Shared _RfcDestinatario As String = ""
+    Shared _NombreRemitente As String = ""
+    Shared _NombreDestinatario As String = ""
+    Shared _CartaPorteID As Integer = 0
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+pageLoad()
+
+            ''''''''''''''''''''''''
+            'Carta Porte 
+            '''''''''''''''''''''''
+            ObjCat.Catalogo(cmbEmbalaje, "select clave, concat(clave, ' - ', descripcion) as descripcion from tblTipoEmbalaje ", 0)
+            ObjCat.Catalogo(cmbMoneda, "select clave, nombre as descripcion from tblMoneda ", 0)
+            ObjCat.Catalogo(cmbPermSCT, "select clave, descripcion from tblTipoPermiso where claveTransporte = '01'", 0)
+            ObjCat.Catalogo(cmbConfigVehicular, "select clave, CONCAT(clave, ' - ', descripcion) as descripcion from tblConfigAutotransporte ", 0)
+            ObjCat.Catalogo(cmbAutotransporte, "EXEC pAutotransportes @cmd=6", 0)
+            ObjCat.Catalogo(cmbOperador, "EXEC pOperadores @cmd=6 ", 0)
+
+            ObjCat = Nothing
+            DomiciliosPais()
+            CargaCmbDirecciones_Remitente()
+
+
+donde valida si request(id) no es nulo
+
+                Call verificaCartaPorte()
+                Call tblMercancias_NeedData("on")
+
+else 
+
+                Call creaColumnasCache()
+
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+create invoice()
+
+Agregar depues del nodo de  los impuestos
+
+'
+                'Agrega complemento de carta porte 
+                '
+                If ckCartaPorte.Checked = True Then
+                    If tblMercancias.Items.Count < 1 Then
+                        valMercancias.IsValid = False
+                        Exit Sub
+                    Else
+                        Call CreaNodoCartaPorte(Comprobante)
+                        IndentarNodo(Comprobante, 1)
+                    End If
+                End If
+
+
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::
+CrearAtributosComprobante()
+
+        Dim cartaPorte As String = ""
+        Nodo.SetAttribute("xmlns:cfdi", URI_SAT)
+        Nodo.SetAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance")
+        If ckCartaPorte.Checked = True Then
+            cartaPorte = " http://www.sat.gob.mx/CartaPorte20 http://www.sat.gob.mx/sitio_internet/cfd/CartaPorte/CartaPorte20.xsd"
+            Nodo.SetAttribute("xmlns:cartaporte20", "http://www.sat.gob.mx/CartaPorte20")
+        End If
+        Nodo.SetAttribute("xsi:schemaLocation", "http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd" & cartaPorte)
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+copiar las regiones 
+
+	-Eventos de los objetos carta porte
+	-Funciones de cartaporte
+	-Manipulacion de datos DB CARTA PORTE
+	-Catalogos carta porte
+
+
+::::::::::::::::::::::::::::::::::
+GeneraPDF
+
+despues de colocar el texto de la cantidad [CantidadTexto = "(  " + Num2Text(total - decimales) & " pesos " & Mid(decimales, Len(decimales) - 1) & "/100 M.N. )"]
+
+If ckCartaPorte.Checked = True Then
+
+
+
+::::::::::::::::::::::::::::::::
+
+Para clientes, copiar la region direcciones
+
+En la funcion EditClient() agregar [GridList_NeedData("on")] despues de [cuentasList.DataBind()]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

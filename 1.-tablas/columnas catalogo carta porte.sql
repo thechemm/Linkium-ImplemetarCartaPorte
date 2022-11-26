@@ -1,0 +1,6 @@
+--ALTER TABLE tblCFD
+--ADD 
+-- clienteDireccionid int,
+-- origenDireccionid int,
+-- operadorid int,
+-- autotransporteid int
